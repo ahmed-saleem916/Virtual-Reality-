@@ -1,0 +1,156 @@
+,ZIP,Neighborhood,Population
+0,94102,Financial District,33264.0
+1,94102,Hayes Valley,33264.0
+2,94102,Mission,33264.0
+3,94102,Nob Hill,33264.0
+4,94102,South of Market,33264.0
+5,94102,Tenderloin,33264.0
+6,94102,Western Addition,33264.0
+7,94103,Castro/Upper Market,31585.0
+8,94103,Financial District,31585.0
+9,94103,Hayes Valley,31585.0
+10,94103,Mission,31585.0
+11,94103,Mission Bay,31585.0
+12,94103,Potrero Hill,31585.0
+13,94103,South of Market,31585.0
+14,94103,Tenderloin,31585.0
+15,94104,Chinatown,438.0
+16,94104,Financial District,438.0
+17,94105,Financial District,12944.0
+18,94105,Mission Bay,12944.0
+19,94105,South of Market,12944.0
+20,94107,Bayview Hunters Point,29708.0
+21,94107,Financial District,29708.0
+22,94107,Mission,29708.0
+23,94107,Mission Bay,29708.0
+24,94107,Potrero Hill,29708.0
+25,94107,South of Market,29708.0
+26,94108,Chinatown,13535.0
+27,94108,Financial District,13535.0
+28,94108,Nob Hill,13535.0
+29,94108,South of Market,13535.0
+30,94108,Tenderloin,13535.0
+31,94109,Japantown,55797.0
+32,94109,Marina,55797.0
+33,94109,Nob Hill,55797.0
+34,94109,North Beach,55797.0
+35,94109,Pacific Heights,55797.0
+36,94109,Russian Hill,55797.0
+37,94109,Tenderloin,55797.0
+38,94109,Western Addition,55797.0
+39,94110,Bayview Hunters Point,72765.0
+40,94110,Bernal Heights,72765.0
+41,94110,Castro/Upper Market,72765.0
+42,94110,Excelsior,72765.0
+43,94110,Glen Park,72765.0
+44,94110,Mission,72765.0
+45,94110,Noe Valley,72765.0
+46,94110,Outer Mission,72765.0
+47,94110,Portola,72765.0
+48,94110,Potrero Hill,72765.0
+49,94111,Chinatown,4023.0
+50,94111,Financial District,4023.0
+51,94111,North Beach,4023.0
+52,94112,Bernal Heights,85053.0
+53,94112,Excelsior,85053.0
+54,94112,Glen Park,85053.0
+55,94112,McLaren Park,85053.0
+56,94112,Oceanview/Merced/Ingleside,85053.0
+57,94112,Outer Mission,85053.0
+58,94112,Portola,85053.0
+59,94112,West of Twin Peaks,85053.0
+60,94114,Castro/Upper Market,35077.0
+61,94114,Haight Ashbury,35077.0
+62,94114,Hayes Valley,35077.0
+63,94114,Inner Sunset,35077.0
+64,94114,Mission,35077.0
+65,94114,Noe Valley,35077.0
+66,94114,Twin Peaks,35077.0
+67,94115,Japantown,33841.0
+68,94115,Lone Mountain/USF,33841.0
+69,94115,Pacific Heights,33841.0
+70,94115,Presidio,33841.0
+71,94115,Presidio Heights,33841.0
+72,94115,Western Addition,33841.0
+73,94116,Inner Sunset,46594.0
+74,94116,Lakeshore,46594.0
+75,94116,Sunset/Parkside,46594.0
+76,94116,Twin Peaks,46594.0
+77,94116,West of Twin Peaks,46594.0
+78,94117,Castro/Upper Market,43526.0
+79,94117,Golden Gate Park,43526.0
+80,94117,Haight Ashbury,43526.0
+81,94117,Hayes Valley,43526.0
+82,94117,Inner Sunset,43526.0
+83,94117,Lone Mountain/USF,43526.0
+84,94117,Western Addition,43526.0
+85,94118,Golden Gate Park,41241.0
+86,94118,Inner Richmond,41241.0
+87,94118,Lone Mountain/USF,41241.0
+88,94118,Outer Richmond,41241.0
+89,94118,Presidio,41241.0
+90,94118,Presidio Heights,41241.0
+91,94118,Seacliff,41241.0
+92,94121,Golden Gate Park,43843.0
+93,94121,Lincoln Park,43843.0
+94,94121,Outer Richmond,43843.0
+95,94121,Presidio,43843.0
+96,94121,Seacliff,43843.0
+97,94122,Golden Gate Park,61248.0
+98,94122,Haight Ashbury,61248.0
+99,94122,Inner Richmond,61248.0
+100,94122,Inner Sunset,61248.0
+101,94122,Lone Mountain/USF,61248.0
+102,94122,Outer Richmond,61248.0
+103,94122,Sunset/Parkside,61248.0
+104,94122,West of Twin Peaks,61248.0
+105,94123,Marina,26074.0
+106,94123,Pacific Heights,26074.0
+107,94123,Presidio,26074.0
+108,94123,Russian Hill,26074.0
+109,94124,Bayview Hunters Point,36278.0
+110,94124,Bernal Heights,36278.0
+111,94124,Mission,36278.0
+112,94124,Portola,36278.0
+113,94124,Potrero Hill,36278.0
+114,94124,Treasure Island,36278.0
+115,94124,Visitacion Valley,36278.0
+116,94127,Glen Park,20413.0
+117,94127,Oceanview/Merced/Ingleside,20413.0
+118,94127,Twin Peaks,20413.0
+119,94127,West of Twin Peaks,20413.0
+120,94128, ,173.0
+121,94129,Inner Richmond,4011.0
+122,94129,Marina,4011.0
+123,94129,Pacific Heights,4011.0
+124,94129,Presidio,4011.0
+125,94129,Presidio Heights,4011.0
+126,94129,Seacliff,4011.0
+127,94130,Treasure Island,3184.0
+128,94131,Bernal Heights,30458.0
+129,94131,Castro/Upper Market,30458.0
+130,94131,Glen Park,30458.0
+131,94131,Inner Sunset,30458.0
+132,94131,Mission,30458.0
+133,94131,Noe Valley,30458.0
+134,94131,Outer Mission,30458.0
+135,94131,Twin Peaks,30458.0
+136,94131,West of Twin Peaks,30458.0
+137,94132,Lakeshore,30437.0
+138,94132,Oceanview/Merced/Ingleside,30437.0
+139,94132,Outer Mission,30437.0
+140,94132,Sunset/Parkside,30437.0
+141,94132,West of Twin Peaks,30437.0
+142,94133,Chinatown,26930.0
+143,94133,Financial District,26930.0
+144,94133,Nob Hill,26930.0
+145,94133,North Beach,26930.0
+146,94133,Russian Hill,26930.0
+147,94134,Bayview Hunters Point,43286.0
+148,94134,Bernal Heights,43286.0
+149,94134,Excelsior,43286.0
+150,94134,McLaren Park,43286.0
+151,94134,Portola,43286.0
+152,94134,Visitacion Valley,43286.0
+153,94158,Mission Bay,9231.0
+154,94158,Potrero Hill,9231.0
