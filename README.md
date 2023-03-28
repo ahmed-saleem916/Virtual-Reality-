@@ -20,6 +20,9 @@ After removing any null values and irrelevent columnsfrom the SF crime csv, it b
 Once we had the data cleaned we had to join the tables to make sure we can run a meaningful statistical test. 
 
 ## Running our analysis: 
+### Null Hypothesis: 
+A high crime rate for violent crime in San Francisco neighborhoods negatively affects 	the price of home values for a given neighborhood.
+
 ### Pearson Coefficient Correlation test: 
 
 
