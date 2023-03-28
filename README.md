@@ -9,11 +9,12 @@ Our group is testing the **hypothesis:** A high crime rate for violent crime in 
 We needed housing and crime data, and preferred free online resources for this. We got our housing data from Zillows online [Housing Data portal](https://www.zillow.com/research/data/), specifically the **Zillow Home Value Index**, and got our crime data from the [San Francisco Open Data Online Portal](https://datasf.org/opendata/). We used [Police Department Incident Reports: 2018 to Present](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783). 
 
 ## Cleaning The Data: 
+
 ### Housing Data: 
-To get the housing data into a format we can use we had to isolate the geography to neighborhoods in San Francisco and making sure the timeframe starts on January 2018 and ends on December 2022. 
+To get the housing data into a format we can use we had to isolate the geography to neighborhoods in San Francisco and making sure the timeframe starts on January 2018 and ends on December 2022. In order to use this data for a linear regression, the csv needed to be transposed so that the timestamp in the rows became the index of the columns. We later used the pd.melt() function to add the neighborhood column back into the final dataset. In the end we had average house values per month per neighborhood in a format that could merge with the crime data
 
 ### Crime Data: 
-To clean the crime data and get it into a format we can work with we first isolated which reports were filed by police, as the crime data included reports filed online by private citizens. We then categorized crime into violent, non-violent, and removal as not all police reports filed do not fall into criminal activity. 
+After removing any null values and irrelevent columnsfrom the SF crime csv, it became apparent that there was a fair amount of missing data in string format. Any data with the word "False" where the column was not a boolean was dropped from the dataset. In addition, incident categories with spelling inconcistencies were fixed. Any row where the Incident Datetime matched the Incident Reporttime was also dropped ensuring that every incident recorded in the dataset was unique. Finally, any incident that was reported by a member of the public rather than a member of law enforcement was also removed. We then categorized crime into violent, non-violent, and removal as not all police reports filed do not fall into criminal activity. 
 
 ### Preparing for statistical analysis: 
 Once we had the data cleaned we had to join the tables to make sure we can run a meaningful statistical test. 
