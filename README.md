@@ -20,13 +20,6 @@ After removing any null values and irrelevent columnsfrom the SF crime csv, it b
 Once we had the data cleaned we had to join the tables to make sure we can run a meaningful statistical test. 
 
 ## Running our analysis: 
-### Data Visualization: 
-#### Violent Crimes:
-
-
-#### Nonviolent Crimes: 
-
-
 ### Pearson Coefficient Correlation test: 
 
 
