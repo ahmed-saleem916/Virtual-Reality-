@@ -47,7 +47,7 @@
 
 4. We are ready to run our statistical analysis and calculate the *Pearson Correlation Coefficient*. To performn the analysis we would use the following functions:
     * 4.1 `groupby("Neighborhood")` because we want to know the correlation between crime and housing prices in each neighborhood, not in the whole city.
-    * 4.2 `.corr()`to calculate the correlation coeffcient between the two variables. 
+    * 4.2 `.corr()` to calculate the correlation coeffcient between the two variables. 
     * 4.3 `.iloc[]` to filter and `.reset_index()`to reset the index.
 
 
