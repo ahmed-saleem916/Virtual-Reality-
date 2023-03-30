@@ -24,7 +24,10 @@ Once we had the data cleaned we had to join the tables to make sure we can run a
 A high crime rate for violent crime in San Francisco neighborhoods negatively affects 	the price of home values for a given neighborhood.
 
 ### Prepare the cleaned Zillow housing data to perform the statistical test.¶
-#### File: zillow_df_regression.ipynb
+#### Python File: [Population by neighborhood in San Francisco](https://github.com/ahmed-saleem916/Virtual-Reality-/blob/main/population_sf_neighborhoods.ipynb)
+1. We found certain difficulties in obtaining the population of each of the neighborhoods of San Francisco in the period of time between 2018 and 2022 so,  we used the following csv that contains an estimate of the inhabitants of San Francisco during the period studied. It should be noted that for this analysis we assumed that the population of each neighborhood remained constant throughout the period under study.
+   * [Estimated population in San Francisco by neighborhood](https://data.sfgov.org/widgets/ejrc-vnwu?mobile_redirect=true)
+#### File: [Prepare the cleaned Zillow housing data to perform the statistical test.](https://github.com/ahmed-saleem916/Virtual-Reality-/blob/main/zillow_df_regression.ipynb)
 1. We prepared the house value to merge with the crime data. For that, we needED to turn the columns into rows since each month from January 2018 until December 2022 is a column in our house value data frame. 
     * To turn the DataFrame from wide into long we used the function `pd.melt()`.
        ```python
@@ -38,8 +41,8 @@ A high crime rate for violent crime in San Francisco neighborhoods negatively af
 
 ### Calculation of the correlation between the value of housing and the crime rate in each neighborhood.
 #### File: Statistical_analysis_by_neighborhood_total.ipynb
-1. We have cleaned the crime data set in the previous steps so we can start. We are ready to shape our data frame so that we can work with it and test our hypothesis.
-     * 1.1. We get rid of the columns we wont need for running our analysis usisng the function `.drop(columns=[])`.
+1. We have cleaned the crime data set in the previous steps so we are ready to shape our data frame so that we can work with it and test our hypothesis.
+    * 1.1. We get rid of the columns we wont need for running our analysis usisng the function `.drop(columns=[])`.
     * 1.2. We will merge our data frames using the comon index `Date` so we nedded to get the `year-month`from the `Incident Datetime`column. To performn that we implemented the following function:
 
       ```python
@@ -48,7 +51,7 @@ A high crime rate for violent crime in San Francisco neighborhoods negatively af
           incident_reports["Incident Year-Month"] = incident_reports["Incident Date"].apply(extract_year_month)
         ```
     * 1.3 We reduced the number of columns to those we will need: `Analysis Neighborhood`, `Incident Year-Month` and `Incident Category`.
-2. To get our final data frame ready to merge with the Zillow data frame we grouped by `Analysis Neighborhood` and `Incident Year-Month`nd we used the function `.count()`, because we wanted to know how many times `neighborhood-year-month` was repeated throughout our data frame, so we would get the total number of crimes for each neighborhood in each time period.
+2. To get our final data frame ready to merge with the Zillow data frame, we grouped by `Analysis Neighborhood` and `Incident Year-Month` using the function `.count()`, because we wanted to know how many times `neighborhood per month per year` was repeated throughout our data frame so we would get the total number of crimes for each neighborhood in each time period.
     * 2.1. Reset the Index from the new crime data frema to merge with the Zillow data ser usisng `df_reset_idex()`.
     * 2.2. Renamed the columns to match with the Zillow data frame columns with the `.rename(columns={})`function.
 
@@ -57,15 +60,17 @@ A high crime rate for violent crime in San Francisco neighborhoods negatively af
       ````
     * 2.3. We merged the  Zillow data frame with the crime data frame with the function `pd.merge(crime_regression_rename,zillow_df,on=["Neighborhood","Date"])`.
 
-3. Since 
+3. We decided to set crime rates as our variable instead of the number of crimes. Otherwise, our analysis may not provide an accurate representation of the crime in each neighborhood because it would not take into account the size of the population in each neighborhood.  
       ```python
         crimes_price_population["Crime Rate"] =(crimes_price_population["Number of Crimes"]/crimes_price_population["Population"])*10000
       ```
 
-4. We are ready to run our statistical analysis and calculate the *Pearson Correlation Coefficient*. To performn the analysis we would use the following functions:
+4. We decided the most appropriate statistical analysis to probe our hypothesis was the *Pearson Correlation Coefficient*. To performn the analysis we would use the following functions:
     * 4.1 `groupby("Neighborhood")` because we want to know the correlation between crime and housing prices in each neighborhood, not in the whole city.
     * 4.2 `.corr()` to calculate the correlation coeffcient between the two variables. 
     * 4.3 `.iloc[]` to filter and `.reset_index()`to reset the index.
+
+      The function`.corr()` returns a *matrix** as the *below table* (). To avoid that has to filter by index using the function .iloc[0::2,-1], which means: from the row **0** up to the end of the data frame **:**, select the step **:2** on the last column of the data fram **-1**.
 
 
       | Neighborhood          | Pearson Coefficient|
