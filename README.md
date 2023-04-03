@@ -3,7 +3,7 @@
 ## Group 2: Mary-Elizabeth Vogel, Vidul Dasan, Ariel Lin, Mirian Ruanova, Ahmed Saleem, Blaze Hickey
 
 ## Introduction: 
-Our group is testing the **hypothesis:** A high crime rate for violent crime in San Francisco neighborhoods negatively affects the price of home values for a given neighborhood.
+Our group is testing the **hypothesis:** A high crime rate in San Francisco neighborhoods negatively affects the price of home values for a given neighborhood.
 
 ### Data We Used: 
 We needed housing and crime data, and preferred free online resources for this. We got our housing data from Zillows online [Housing Data portal](https://www.zillow.com/research/data/), specifically the **Zillow Home Value Index**, and got our crime data from the [San Francisco Open Data Online Portal](https://datasf.org/opendata/). We used [Police Department Incident Reports: 2018 to Present](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783). 
@@ -16,34 +16,46 @@ To get the housing data into a format we can use we had to isolate the geography
 ### Crime Data: 
 After removing any null values and irrelevent columnsfrom the SF crime csv, it became apparent that there was a fair amount of missing data in string format. Any data with the word "False" where the column was not a boolean was dropped from the dataset. In addition, incident categories with spelling inconcistencies were fixed. Any row where the Incident Datetime matched the Incident Reporttime was also dropped ensuring that every incident recorded in the dataset was unique. Finally, any incident that was reported by a member of the public rather than a member of law enforcement was also removed. We then categorized crime into violent, non-violent, and removal as not all police reports filed do not fall into criminal activity. 
 
-### Preparing for statistical analysis: 
-Once we had the data cleaned we had to join the tables to make sure we can run a meaningful statistical test. 
-
-## Running our analysis: 
+#
+# Statistical Analysis
 ### Null Hypothesis: 
-A high crime rate for violent crime in San Francisco neighborhoods negatively affects 	the price of home values for a given neighborhood.
+A high crime rate for violent crime in San Francisco neighborhoods negatively affects the price of house values for a given neighborhood.
+### Preparing for statistical analysis: 
+Now that we have defined our hypothesis and explored the available data, we are ready to perform our statistical analysis. Since we want to analyze the relationship between house values in San Francisco neighborhoods and crime in those neighborhoods, we determined that the most appropriate statistical analysis in our case is the Pearson Correlation Coefficient test. 
 
-### Prepare the cleaned Zillow housing data to perform the statistical test.¶
-#### Python File: [Population by neighborhood in San Francisco](https://github.com/ahmed-saleem916/Virtual-Reality-/blob/main/population_sf_neighborhoods.ipynb)
+We know the number of crimes per neighborhood and the median home value in each neighborhood for a given time series. Analyzing it well, it looks like the number of crimes in absolute terms does not take into account the size of the population in each neighborhood, so it may not provide an accurate representation of the crime in each neighborhood. A neighborhood with a high population may have more total crimes than a neighborhood with a low population, but the crime rate may be lower in the former if you consider the number of crimes per capita. Therefore, using the total number of crimes per neighborhood could lead to biased results. 
+Therefore, the variables of our analysis will be:
+
+  * The average house value. 
+  * The crime rate.
+
+Next, we will analyze the steps to follow to obtain the values that the variables will take and perform the statistical analysis.
+## Running our analysis: 
+### Obtain the population in each neighborhood for the time period studied and obtain our first variable: the crime rate per each 10,00 residents.¶
+#### Python File: [Population by neighborhood in San Francisco.](https://github.com/ahmed-saleem916/Virtual-Reality-/blob/main/population_sf_neighborhoods.ipynb)
+
 1. We found certain difficulties in obtaining the population of each of the neighborhoods of San Francisco in the period of time between 2018 and 2022 so,  we used the following csv that contains an estimate of the inhabitants of San Francisco during the period studied. It should be noted that for this analysis we assumed that the population of each neighborhood remained constant throughout the period under study.
    * [Estimated population in San Francisco by neighborhood](https://data.sfgov.org/widgets/ejrc-vnwu?mobile_redirect=true)
+
+### Prepare the data frame with the data of the value of housing in the neighborhoods of San Francisco during the period from 2018 to 2022 for statistical analysis.¶
+
 #### File: [Prepare the cleaned Zillow housing data to perform the statistical test.](https://github.com/ahmed-saleem916/Virtual-Reality-/blob/main/zillow_df_regression.ipynb)
-1. We prepared the house value to merge with the crime data. For that, we needED to turn the columns into rows since each month from January 2018 until December 2022 is a column in our house value data frame. 
+1. We prepared the house value to merge with the crime data. For that, we needed to turn the columns into rows since each month from January 2018 until December 2022 is a column in our house value data frame. 
     * To turn the DataFrame from wide into long we used the function `pd.melt()`.
        ```python
         df_melted = pd.melt(incident_report, id_vars=['Neighborhood'], value_vars=['2018-01', '2018-02', '2018-03', '2018-04', '2018-05',".."], var_name='Date', value_name='Price')
         ```
-    * In order to get the the median house value per period (year-month) and neighborhood, we grouped by `Neighborhood` and `Date` columns and we used the function `.sum()`. Since there is only a single average value for each neighborhood in each period determined by our columns. We had 37 rows (36 neighborhood) and 61 columns (60 months from January 2018 until December 2020).
+    * In order to get the the median house value per period (year-month) and neighborhood, we grouped by `Neighborhood` and `Date` columns and we used the function `.sum()`. Since there is only a single house average value for each neighborhood in each period determined by our columns. We had 37 rows (36 neighborhood) and 61 columns (60 months from January 2018 until December 2020).
       ```python
         gruopbymelted = df_melted.groupby(["Neighborhood","Date"]).sum()
         ```
 2. Finally, we saved our data frame as a csv file for use in our future statistical analysis usisng the function `.to_csv(zillow_regression.csv)`.
 
-### Calculation of the correlation between the value of housing and the crime rate in each neighborhood.
-#### File: Statistical_analysis_by_neighborhood_total.ipynb
-1. We have cleaned the crime data set in the previous steps so we are ready to shape our data frame so that we can work with it and test our hypothesis.
+### Analyze the possible correlation between the average value of housing in San Francisco neighborhoods and the crime rate in each neighborhood during 2018 and 2022 through the calculation of Pearson's Correlation Coefficient.
+#### File: [Statistical Analysis.](https://github.com/ahmed-saleem916/Virtual-Reality-/blob/main/Statistical_analysis_by_neighborhood_total.ipynb)
+1. We have cleaned the crime data set in the previous steps. We are ready to shape our data frame and test our hypothesis.
     * 1.1. We get rid of the columns we wont need for running our analysis usisng the function `.drop(columns=[])`.
-    * 1.2. We will merge our data frames using the comon index `Date` so we nedded to get the `year-month`from the `Incident Datetime`column. To performn that we implemented the following function:
+    * 1.2. We would merge our data frames using the comon index `Date` so we nedded to get the `year-month`from the `Incident Datetime`column. To performn that we implemented the following function:
 
       ```python
         def extract_year_month(date_str):
@@ -70,7 +82,7 @@ A high crime rate for violent crime in San Francisco neighborhoods negatively af
     * 4.2 `.corr()` to calculate the correlation coeffcient between the two variables. 
     * 4.3 `.iloc[]` to filter and `.reset_index()`to reset the index.
 
-      The function`.corr()` returns a *matrix** as the *below table* (). To avoid that has to filter by index using the function .iloc[0::2,-1], which means: from the row **0** up to the end of the data frame **:**, select the step **:2** on the last column of the data fram **-1**.
+      The function`.corr()` returns a *matrix*. To avoid that, we needed to filter by index using the function `.iloc[0::2,-1]`, which means: from the row **0** up to the end of the data frame **:**, select the step **:2** on the last column of the data frame **-1**.
 
 
       | Neighborhood          | Pearson Coefficient|
@@ -85,6 +97,30 @@ A high crime rate for violent crime in San Francisco neighborhoods negatively af
     corr_crimes_prices=corr_crimes_prices.rename(columns={"Crime Rate":"Pearson Coefficient"})
     corr_crimes_prices=corr_crimes_prices[["Neighborhood","Pearson Coefficient"]]
   ```
+5. Lastly, we calculated the average crime rate for the time period under study. To do so, we filter by neighborhood using the `groupby.("Neighborhood").mean()`function. 
+  5.1 We use the `.plot()` function to plot a bar chart showing the average crime rate for each neighborhood.
+  5.2 We were also interested in obtaining a bar chart with the 10 neighborhoods with the highest crime rate and another with the 10 neighborhoods with the lowest crime rate for which we used the following functions:
+    5.1.1. To obtain the 10 neighborhoods with the highest crime rate:
+    ```python
+    largest_crime_rates = crime_rate_plot_index.nlargest(10,"Crime Rate")
+    ```
+    5.1.2. To obtain the 10 neighborhoods with the lowest crime rate:
+    ```python
+    smallest_crime_rates = crime_rate_plot_index.nsmallest(10,"Crime Rate")
+    ```
+### Analyze the possible correlation between the average value of housing in San Francisco neighborhoods and the *violent* and *non-violent* crime rate in each neighborhood during 2018 and 2022 through the calculation of Pearson's Correlation Coefficient.
+#### File: [Statistical Analysis for violent and non-violent crime rates.](https://github.com/ahmed-saleem916/Virtual-Reality-/blob/main/Statistical_analysis_by_neighborhood.ipynb)
+After conducting our analysis, we found there is no correlation between house value and crime rates in San Francisco. Nevertheless, since the results did not satisfy our hypothesis, we formulated a second hypothesis assuming: 
+  * *A high crime rate for violent crime in San Francisco neighborhoods negatively affects the price of home values for a given neighborhood.*
+
+We cleaned our data [(see here)](https://github.com/ahmed-saleem916/Virtual-Reality-/blob/main/crime_categories.ipynb) and re-ran Pearson's Correlation Coefficient analysis but, again, the results indicated the crime rate for violent crime or non-violent crime and home values in the different neighborhoods of San Francisco are not correlated.
+
+However, for the analysis between the crime rate for violent crime and the value of housing, we observe that one of the neighborhoods shows a negative Pearson coefficient of about 0.6, which shows signs of a negative correlation. That is, when the crime rate increases, the value of housing decreases for this neighborhood. If we take into account that this is one of the neighborhoods with the lowest crime rate [(see In[59])](https://github.com/ahmed-saleem916/Virtual-Reality-/blob/main/Statistical_analysis_by_neighborhood_total.ipynb) and the lowest average housing value, we could affirm that this neighborhood is one of the most interesting in which to invest in housing. 
+
+Finally, we wanted to represent the Visitation Valley neighborhood in a scatter plot and calculate linear regression for violent and non-violent crime rates [(see In[26][27][29][30])](https://github.com/ahmed-saleem916/Virtual-Reality-/blob/main/Statistical_analysis_by_neighborhood.ipynb).
+
+In the [Plotting File](https://github.com/ahmed-saleem916/Virtual-Reality-/blob/main/regression.ipynb), we have plotted several scatter plots for other San Francisco neighborhoods that have caught our attention because despite having very high crime rates such as Tenderloin [(see In[12][13])](https://github.com/ahmed-saleem916/Virtual-Reality-/blob/main/regression.ipynb) and Financial District/South Beach [(see In[15][16])](https://github.com/ahmed-saleem916/Virtual-Reality-/blob/main/regression.ipynb), we observed that there is no correlation between the variables studied. The same is true for the Presidio neighborhood [(see In[18][19])], one of the neighborhoods with the highest home values and the lowest crime rate; it seems that crime does not affect home values. 
+
 ## Major Findings: 
 Neighborhoods with the highest average home values tended to have fewer crimes and lower crime rates, however, there is no statistically significant relationship between crime rate or housing value. 
 
